@@ -47,7 +47,7 @@ namespace ElevenNoteMVC01.Controllers
 
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             var svc = CreateNoteService();
 
