@@ -11,7 +11,7 @@ namespace ElevenNote.Models.Note
     {
         public int NoteId { get; set; }
 
-        
+        [DisplayName("Note Title")]
         public string Title { get; set; }
 
         [DisplayName("Date Created")]
