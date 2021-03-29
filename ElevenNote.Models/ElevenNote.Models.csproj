@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Note\NoteCreate.cs" />
+    <Compile Include="Note\NoteDetail.cs" />
+    <Compile Include="Note\NoteEdit.cs" />
+    <Compile Include="Note\NoteListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
