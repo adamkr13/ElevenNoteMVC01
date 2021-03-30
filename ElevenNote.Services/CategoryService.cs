@@ -30,6 +30,7 @@ namespace ElevenNote.Services
                         {
                             CategoryId = e.CategoryId,
                             CategoryName = e.CategoryName,
+                            CreatedUtc = e.CreatedUtc
                         });
 
                 return query.ToArray();
