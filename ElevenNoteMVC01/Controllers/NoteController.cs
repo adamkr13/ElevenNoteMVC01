@@ -124,9 +124,6 @@ namespace ElevenNoteMVC01.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
         private NoteService CreateNoteService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

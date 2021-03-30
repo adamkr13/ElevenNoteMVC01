@@ -9,6 +9,7 @@ namespace ElevenNote.Models.Category
 {
     public class CategoryListItem
     {
+        [DisplayName("Category Id")]
         public int CategoryId { get; set; }
 
         [DisplayName("Category Name")]

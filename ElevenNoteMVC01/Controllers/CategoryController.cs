@@ -45,7 +45,76 @@ namespace ElevenNoteMVC01.Controllers
             return View(model);
         }
 
+        public ActionResult Details(int id)
+        {
+            var service = CreateCategoryService();
+            var model = service.GetCategoryById(id);
 
+            return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var service = CreateCategoryService();
+            var detail = service.GetCategoryById(id);
+
+            var model =
+                new CategoryEdit
+                {
+                    CategoryId = detail.CategoryId,
+                    CategoryName = detail.CategoryName,
+                    Description = detail.Description
+                };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, CategoryEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.CategoryId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateCategoryService();
+
+            if(service.UpdateCategory(model))
+            {
+                TempData["SaveResult"] = "The category was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "The category could not be updated.");
+
+            return View(model);
+        }
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var service = CreateCategoryService();
+            var model = service.GetCategoryById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateCategoryService();
+            service.DeleteCategory(id);
+
+            TempData["SaveResult"] = "The category was deleted.";
+
+            return RedirectToAction("Index");
+        }
 
         private CategoryService CreateCategoryService()
         {
