@@ -237,17 +237,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Note\Index.cshtml" />
-    <Content Include="Views\Note\Create.cshtml" />
-    <Content Include="Views\Note\Details.cshtml" />
-    <Content Include="Views\Note\Edit.cshtml" />
-    <Content Include="Views\Note\Delete.cshtml" />
+    <Content Include="Views\Note\OldIndex.cshtml" />
+    <Content Include="Views\Note\OldCreate.cshtml" />
+    <Content Include="Views\Note\OldDetails.cshtml" />
+    <Content Include="Views\Note\OldEdit.cshtml" />
+    <Content Include="Views\Note\OldDelete.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Note\Index.cshtml" />
+    <Content Include="Views\Note\Create.cshtml" />
+    <Content Include="Views\Note\Details.cshtml" />
+    <Content Include="Views\Note\Edit.cshtml" />
+    <Content Include="Views\Note\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

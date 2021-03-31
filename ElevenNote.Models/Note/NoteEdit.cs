@@ -19,5 +19,7 @@ namespace ElevenNote.Models.Note
 
         [Required]
         public string Content { get; set; }
+
+        public int? CategoryId { get; set; }
     }
 }
