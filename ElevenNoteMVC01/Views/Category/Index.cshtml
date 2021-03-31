@@ -1,13 +1,13 @@
-﻿@model IEnumerable<ElevenNote.Models.Note.NoteListItem>
+﻿@model IEnumerable<ElevenNote.Models.Category.CategoryListItem>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Note Index</h2>
+<h2>Category Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Note", "Create")
+    @Html.ActionLink("Create New Category", "Create")
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -21,10 +21,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NoteId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.CategoryId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -39,10 +36,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NoteId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.CategoryId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryName)
@@ -51,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.CreatedUtc)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
             </td>
         </tr>
     }

@@ -5,23 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElevenNote.Models.Note
+namespace ElevenNote.Models.Category
 {
-    public class NoteDetail
+    public class CategoryDetail
     {
-        public int NoteId { get; set; }
-        
-        public string Title { get; set; }
-        
-        public string Content { get; set; }
+        [DisplayName("Category Id")]
+        public int CategoryId { get; set; }
 
         [DisplayName("Category Name")]
         public string CategoryName { get; set; }
 
-        [DisplayName("Created")]
+        public string Description { get; set; }
+        
+        [DisplayName("Category Created")]
         public DateTimeOffset CreatedUtc { get; set; }
         
-        [DisplayName("Modified")]
+        [DisplayName("Category Modified")]
         public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
