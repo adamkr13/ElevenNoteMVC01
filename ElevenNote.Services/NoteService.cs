@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ElevenNote.Services
 {
@@ -34,6 +35,27 @@ namespace ElevenNote.Services
             {
                 ctx.Notes.Add(entity);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<SelectListItem> CategoryOptions()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Categories.Select(p =>
+                    new SelectListItem
+                    {
+                        Text = p.CategoryName,
+                        Value = p.CategoryId.ToString()
+                    });
+
+
+
+                var categoryList = query.ToList();
+                categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
+                return categoryList;
             }
         }
 
