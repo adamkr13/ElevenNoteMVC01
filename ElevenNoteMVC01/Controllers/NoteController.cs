@@ -24,6 +24,10 @@ namespace ElevenNoteMVC01.Controllers
 
         public ActionResult Create()
         {
+            var service = CreateNoteService();
+            var model = service.CategoryOptionsCreate();
+            ViewData["Categories"] = model;
+
             return View();
         }
 
@@ -63,12 +67,20 @@ namespace ElevenNoteMVC01.Controllers
 
             var detail = service.GetNoteById(id);
 
+            var categoryList = service.CategoryOptionsEdit();
+            
+            if (detail.CategoryName == null)
+                categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
+            else
+            categoryList.Insert(0, new SelectListItem { Text = detail.CategoryName, Value = "" });
+
             var model =
                 new NoteEdit
                 {
                     NoteId = detail.NoteId,
                     Title = detail.Title,
-                    Content = detail.Content
+                    Content = detail.Content,
+                    Categories = categoryList
                 };
 
             return View(model);
