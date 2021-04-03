@@ -65,22 +65,20 @@ namespace ElevenNoteMVC01.Controllers
         {
             var service = CreateNoteService();
 
-            var detail = service.GetNoteById(id);
+            var detail = service.GetNoteById(id);            
 
             var categoryList = service.CategoryOptionsEdit();
-            
-            if (detail.CategoryName == null)
-                categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
-            else
-            categoryList.Insert(0, new SelectListItem { Text = detail.CategoryName, Value = "" });
 
+            categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
+            categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
+            
             var model =
                 new NoteEdit
                 {
                     NoteId = detail.NoteId,
                     Title = detail.Title,
                     Content = detail.Content,
-                    Categories = categoryList
+                    Categories = categoryList                    
                 };
 
             return View(model);

@@ -53,6 +53,7 @@ namespace ElevenNote.Services
 
                 var categoryList = query.ToList();
                 categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
+                categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
                 return categoryList;
             }
         }
