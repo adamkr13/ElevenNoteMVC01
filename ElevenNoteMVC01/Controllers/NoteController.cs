@@ -65,20 +65,35 @@ namespace ElevenNoteMVC01.Controllers
         {
             var service = CreateNoteService();
 
-            var detail = service.GetNoteById(id);            
+            var detail = service.GetNoteById(id);
 
             var categoryList = service.CategoryOptionsEdit();
 
-            categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
-            categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
-            
+            if (detail.CategoryName == null)
+            {
+                categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
+                categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
+            }
+            else
+            {
+                string value = "";
+                foreach (var item in categoryList)
+                {
+                    if(item.Text == detail.CategoryName)
+                        value = item.Value.ToString();
+                }
+                categoryList.Insert(0, new SelectListItem { Text = detail.CategoryName, Value = value });
+                categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
+            }
+
+
             var model =
                 new NoteEdit
                 {
                     NoteId = detail.NoteId,
                     Title = detail.Title,
                     Content = detail.Content,
-                    Categories = categoryList                    
+                    Categories = categoryList
                 };
 
             return View(model);
@@ -98,7 +113,7 @@ namespace ElevenNoteMVC01.Controllers
 
             var service = CreateNoteService();
 
-            if(service.UpdateNote(model))
+            if (service.UpdateNote(model))
             {
                 TempData["SaveResult"] = "Your note was updated.";
                 return RedirectToAction("Index");
@@ -126,7 +141,7 @@ namespace ElevenNoteMVC01.Controllers
         public ActionResult DeletePost(int id)
         {
             var service = CreateNoteService();
-            
+
             service.DeleteNote(id);
 
             TempData["SaveResult"] = "Your note was deleted";

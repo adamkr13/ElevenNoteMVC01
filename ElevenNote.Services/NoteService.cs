@@ -47,6 +47,7 @@ namespace ElevenNote.Services
                     .Categories.Select(c =>
                     new SelectListItem
                     {
+                        //Selected = true,
                         Text = c.CategoryName,
                         Value = c.CategoryId.ToString()
                     });
