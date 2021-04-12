@@ -37,6 +37,9 @@ namespace ElevenNoteMVC01.Data
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<CategoryNote> CategoryNotes { get; set; }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
