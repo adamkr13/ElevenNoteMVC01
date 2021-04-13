@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElevenNote.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,6 +18,6 @@ namespace ElevenNote.Models.Note
         [MaxLength(8000)]
         public string Content { get; set; }
 
-        public int? CategoryId { get; set; }
+        public virtual List<CategoryNote> Categories { get; set; } = new List<CategoryNote>();
     }
 }

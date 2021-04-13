@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElevenNote.Models.Note;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace ElevenNote.Models.Category
         public string CategoryName { get; set; }
 
         public string Description { get; set; }
-        
+
+        public List<NoteListItem> Notes { get; set; }
+
         [DisplayName("Category Created")]
         public DateTimeOffset CreatedUtc { get; set; }
         

@@ -24,6 +24,6 @@ namespace ElevenNote.Data
 
         public DateTimeOffset ModifiedUtc { get; set; }
 
-        public virtual List<Note> Notes { get; set; } = new List<Note>();
+        public virtual List<CategoryNote> Notes { get; set; } = new List<CategoryNote>();
     }
 }

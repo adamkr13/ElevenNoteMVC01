@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElevenNote.Models.Category;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,15 +14,15 @@ namespace ElevenNote.Models.Note
         
         public string Title { get; set; }
         
-        public string Content { get; set; }
-
-        [DisplayName("Category Name")]
-        public string CategoryName { get; set; }        
+        public string Content { get; set; }             
 
         [DisplayName("Created")]
         public DateTimeOffset CreatedUtc { get; set; }
         
         [DisplayName("Modified")]
         public DateTimeOffset? ModifiedUtc { get; set; }
+
+        public virtual List<CategoryListItem> Categories { get; set; }
+
     }
 }

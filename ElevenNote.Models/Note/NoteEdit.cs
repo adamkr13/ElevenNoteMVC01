@@ -19,15 +19,6 @@ namespace ElevenNote.Models.Note
         public string Title { get; set; }
 
         [Required]
-        public string Content { get; set; }
-
-        public int? CategoryId { get; set; }
-
-        public List<SelectListItem> Categories { get; set; }
-        public int? SelectedCategory { get; set; }
-        public NoteEdit()
-        {
-            Categories = new List<SelectListItem>();
-        }
+        public string Content { get; set; }        
     }
 }
