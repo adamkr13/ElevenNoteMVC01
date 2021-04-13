@@ -50,6 +50,15 @@
             @Html.DisplayFor(model => model.ModifiedUtc)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories)
+        </dt>
+        @foreach (var item in Model.Categories)
+        {
+            <dd>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </dd>
+        }
     </dl>
 </div>
 <p>

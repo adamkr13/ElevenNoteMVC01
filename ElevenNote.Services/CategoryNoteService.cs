@@ -29,7 +29,9 @@ namespace ElevenNote.Services
                         new CategoryNoteListItem
                         {
                             CategoryId = e.CategoryId,
-                            NoteId = e.NoteId
+                            CategoryName = e.Category.CategoryName,
+                            NoteId = e.NoteId,
+                            NoteTitle = e.Note.Title                            
                         });
                 return query.ToArray();
             }
