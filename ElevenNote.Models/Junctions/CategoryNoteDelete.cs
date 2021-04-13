@@ -11,8 +11,10 @@ namespace ElevenNote.Models.Junctions
     {
         [Required]
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
 
         [Required]
         public int NoteId { get; set; }
+        public string NoteTitle { get; set; }
     }
 }

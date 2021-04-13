@@ -68,5 +68,25 @@ namespace ElevenNote.Services
             }
         }
 
+        public CategoryNoteDelete GetCategoryNoteById(int noteId, int categoryId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .CategoryNotes
+                        .Single(e => e.NoteId == noteId && e.CategoryId == categoryId);
+
+                return
+                    new CategoryNoteDelete
+                    {
+                        NoteId = entity.NoteId,
+                        NoteTitle = entity.Note.Title,
+                        CategoryId = entity.CategoryId,
+                        CategoryName = entity.Category.CategoryName
+                    };
+            }
+        }
+
     }
 }

@@ -26,24 +26,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CategoryId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CategoryName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NoteId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NoteTitle)
-    </td>
-    <td>        
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteTitle)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { noteId = item.NoteId, categoryId = item.CategoryId })
+            </td>
+        </tr>
+    }
 
 </table>

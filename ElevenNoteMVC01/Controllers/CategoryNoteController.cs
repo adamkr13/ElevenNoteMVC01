@@ -44,6 +44,26 @@ namespace ElevenNoteMVC01.Controllers
             return View(model);
         }
 
+        public ActionResult Delete(int noteId, int categoryId)
+        {
+            var service = CreateCategoryNoteService();
+            var model = service.GetCategoryNoteById(noteId, categoryId);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int noteId, int categoryId)
+        {
+            var service = CreateCategoryNoteService();
+            service.DeleteCategoryNote(noteId, categoryId);
+
+            return RedirectToAction("Index");
+        }
+
+
 
 
         private CategoryNoteService CreateCategoryNoteService()
