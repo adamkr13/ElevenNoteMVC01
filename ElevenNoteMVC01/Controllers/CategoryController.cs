@@ -108,10 +108,10 @@ namespace ElevenNoteMVC01.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var noteService = new NoteService(userId);
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            //var noteService = new NoteService(userId);
 
-            noteService.NullCategory(id);
+            //noteService.NullCategory(id);
 
             var service = CreateCategoryService();
             service.DeleteCategory(id);

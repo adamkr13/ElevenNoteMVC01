@@ -87,6 +87,9 @@
     <Compile Include="Category\CategoryDetail.cs" />
     <Compile Include="Category\CategoryEdit.cs" />
     <Compile Include="Category\CategoryListItem.cs" />
+    <Compile Include="Junctions\CategoryNoteCreate.cs" />
+    <Compile Include="Junctions\CategoryNoteDelete.cs" />
+    <Compile Include="Junctions\CategoryNoteListItem.cs" />
     <Compile Include="Note\NoteCreate.cs" />
     <Compile Include="Note\NoteDetail.cs" />
     <Compile Include="Note\NoteEdit.cs" />
@@ -103,6 +106,7 @@
       <Name>ElevenNote.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

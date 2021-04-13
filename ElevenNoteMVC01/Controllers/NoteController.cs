@@ -25,8 +25,8 @@ namespace ElevenNoteMVC01.Controllers
         public ActionResult Create()
         {
             var service = CreateNoteService();
-            var model = service.CategoryOptionsCreate();
-            ViewData["Categories"] = model;
+            //var model = service.CategoryOptionsCreate();
+            //ViewData["Categories"] = model;
 
             return View();
         }
@@ -67,24 +67,24 @@ namespace ElevenNoteMVC01.Controllers
 
             var detail = service.GetNoteById(id);
 
-            var categoryList = service.CategoryOptionsEdit();
+            //var categoryList = service.CategoryOptionsEdit();
 
-            if (detail.CategoryName == null)
-            {
-                categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
-                categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
-            }
-            else
-            {
-                string value = "";
-                foreach (var item in categoryList)
-                {
-                    if(item.Text == detail.CategoryName)
-                        value = item.Value.ToString();
-                }
-                categoryList.Insert(0, new SelectListItem { Text = detail.CategoryName, Value = value });
-                categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
-            }
+            //if (detail.CategoryName == null)
+            //{
+            //    categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
+            //    categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
+            //}
+            //else
+            //{
+            //    string value = "";
+            //    foreach (var item in categoryList)
+            //    {
+            //        if(item.Text == detail.CategoryName)
+            //            value = item.Value.ToString();
+            //    }
+            //    categoryList.Insert(0, new SelectListItem { Text = detail.CategoryName, Value = value });
+            //    categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
+            //}
 
 
             var model =
@@ -92,8 +92,7 @@ namespace ElevenNoteMVC01.Controllers
                 {
                     NoteId = detail.NoteId,
                     Title = detail.Title,
-                    Content = detail.Content,
-                    Categories = categoryList
+                    Content = detail.Content                    
                 };
 
             return View(model);

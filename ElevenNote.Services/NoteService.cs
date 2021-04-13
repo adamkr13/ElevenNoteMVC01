@@ -1,4 +1,5 @@
 ﻿using ElevenNote.Data;
+using ElevenNote.Models.Category;
 using ElevenNote.Models.Note;
 using ElevenNoteMVC01.Data;
 using System;
@@ -27,7 +28,6 @@ namespace ElevenNote.Services
                     OwnerId = _userId,
                     Title = model.Title,
                     Content = model.Content,
-                    CategoryId = model.CategoryId,
                     CreatedUtc = DateTimeOffset.Now
                 };
 
@@ -38,46 +38,46 @@ namespace ElevenNote.Services
             }
         }
 
-        public List<SelectListItem> CategoryOptionsCreate()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                    .Categories.Select(c =>
-                    new SelectListItem
-                    {
-                        //Selected = true,
-                        Text = c.CategoryName,
-                        Value = c.CategoryId.ToString()
-                    });
+        //public List<SelectListItem> CategoryOptionsCreate()
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //            .Categories.Select(c =>
+        //            new SelectListItem
+        //            {
+        //                //Selected = true,
+        //                Text = c.CategoryName,
+        //                Value = c.CategoryId.ToString()
+        //            });
 
-                var categoryList = query.ToList();
-                categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
-                categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
-                return categoryList;
-            }
-        }
+        //        var categoryList = query.ToList();
+        //        categoryList.Insert(0, new SelectListItem { Text = "--Select Category--", Value = "" });
+        //        categoryList.Add(new SelectListItem { Text = "No Category", Value = "" });
+        //        return categoryList;
+        //    }
+        //}
 
-        public List<SelectListItem> CategoryOptionsEdit()
+        //public List<SelectListItem> CategoryOptionsEdit()
 
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                    .Categories.Select(c =>
-                    new SelectListItem
-                    {
-                        Text = c.CategoryName,
-                        Value = c.CategoryId.ToString()
-                    });
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //            .Categories.Select(c =>
+        //            new SelectListItem
+        //            {
+        //                Text = c.CategoryName,
+        //                Value = c.CategoryId.ToString()
+        //            });
 
-                var categoryList = query.ToList();
-                
-                return categoryList;
-            }
-        }
+        //        var categoryList = query.ToList();
+
+        //        return categoryList;
+        //    }
+        //}
 
         public IEnumerable<NoteListItem> GetNotes()
         {
@@ -92,8 +92,9 @@ namespace ElevenNote.Services
                         {
                             NoteId = e.NoteId,
                             Title = e.Title,
-                            CategoryName = e.Category.CategoryName,
-                            CreatedUtc = e.CreatedUtc
+                            CreatedUtc = e.CreatedUtc,
+                            CategoryIds = e.Categories.Select(n => n.Category.CategoryId).ToList(),
+                            CategoryNames = e.Categories.Select(n => n.Category.CategoryName).ToList()
                         }
                         );
                 return query.ToArray();
@@ -104,34 +105,25 @@ namespace ElevenNote.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                
+
                 var entity =
                     ctx
                         .Notes
                         .Single(e => e.NoteId == id && e.OwnerId == _userId);
-                if (entity.CategoryId == null)
-                {
-                    return
-                        new NoteDetail
-                        {
-                            NoteId = entity.NoteId,
-                            Title = entity.Title,
-                            Content = entity.Content,
-                            CategoryName = null,
-                            CreatedUtc = entity.CreatedUtc,
-                            ModifiedUtc = entity.ModifiedUtc
-                        };
 
-                }
                 return
                     new NoteDetail
                     {
                         NoteId = entity.NoteId,
                         Title = entity.Title,
                         Content = entity.Content,
-                        CategoryName = entity.Category.CategoryName,
                         CreatedUtc = entity.CreatedUtc,
-                        ModifiedUtc = entity.ModifiedUtc
+                        ModifiedUtc = entity.ModifiedUtc,
+                        Categories = entity.Categories.Select(n => new CategoryListItem()
+                        {
+                            CategoryId = n.CategoryId,
+                            CategoryName = n.Category.CategoryName
+                        }).ToList()
                     };
             }
         }
@@ -147,7 +139,6 @@ namespace ElevenNote.Services
 
                 entity.Title = model.Title;
                 entity.Content = model.Content;
-                entity.CategoryId = model.SelectedCategory;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
@@ -169,17 +160,17 @@ namespace ElevenNote.Services
             }
         }
 
-        public void NullCategory(int Id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Notes.Where(e => e.CategoryId == Id);
+        //public void NullCategory(int Id)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity = ctx.Notes.Where(e => e.CategoryId == Id);
 
-                foreach (var note in entity)
-                    note.CategoryId = null;                
+        //        foreach (var note in entity)
+        //            note.CategoryId = null;
 
-                var test = (ctx.SaveChanges() > 0);
-            }
-        }
+        //        var test = (ctx.SaveChanges() > 0);
+        //    }
+        //}
     }
 }
